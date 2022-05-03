@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useState } from 'react';
 import CustomInput from './CustomInput';
 
 // const percentages = ['5%', '10%', '15%', '25%', '50%'];
@@ -27,24 +27,35 @@ const percentages = [
 ];
 
 export default function Options(props) {
+  const [isCustom, setIsCustom] = useState(false);
   return (
     <div className='grid grid-cols-3 gap-2'>
       {percentages.map((percentage, idx) => (
         <button
-          onClick={() => props.onClick(percentage.value)}
+          onClick={() => {
+            setIsCustom(false);
+            props.onClick(percentage.value);
+          }}
           key={idx}
           className={clsx(
             'bg-dark-cyan rounded p-2 text-white w-24 hover:bg-light-gray-cyan hover:text-dark-cyan font-semibold',
             {
               'bg-strong-cyan !text-dark-cyan':
-                percentage.value === props.selected,
+                !isCustom && percentage.value === props.selected,
             }
           )}
         >
           {percentage.name}
         </button>
       ))}
-      <CustomInput onChange={evt => props.onClick(Number(evt.target.value))} />
+
+      <CustomInput
+        value={isCustom ? props.selected : ''}
+        onChange={evt => {
+          setIsCustom(true);
+          props.onClick(Number(evt.target.value));
+        }}
+      />
     </div>
   );
 }

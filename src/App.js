@@ -9,10 +9,13 @@ import { ReactComponent as PersonIcon } from './images/icon-person.svg';
 function App() {
   const [bill, setBill] = useState(0);
   const [tipPercentage, setTipPercentage] = useState(0);
-  const [peopleNum, setPeopleNum] = useState(1);
+  const [peopleNum, setPeopleNum] = useState(0);
 
-  const tipAmount = (bill * (tipPercentage / 100)) / peopleNum;
-  const totalPerPerson = tipAmount + bill / peopleNum;
+  const tipAmount =
+    peopleNum === 0 ? 0 : (bill * (tipPercentage / 100)) / peopleNum;
+
+  const totalPerPerson = peopleNum === 0 ? 0 : tipAmount + bill / peopleNum;
+
   function handleTipClick(value) {
     setTipPercentage(value);
   }
@@ -22,6 +25,13 @@ function App() {
 
   function handleBillChange(evt) {
     setBill(Number(evt.target.value));
+  }
+
+  function handleReset(evt) {
+    evt.preventDefault();
+    setBill(0);
+    setPeopleNum(0);
+    setTipPercentage('');
   }
 
   return (
@@ -36,16 +46,17 @@ function App() {
             <Input
               icon={<DollarIcon />}
               label='Bill'
-              placeholder={bill}
+              placeholder='0'
               onChange={handleBillChange}
+              value={bill}
             />
-
             <span>Select Tip %</span>
             <Options selected={tipPercentage} onClick={handleTipClick} />
             <Input
               icon={<PersonIcon />}
               label='Number of people'
-              placeholder={peopleNum}
+              placeholder='0'
+              value={peopleNum}
               onChange={handlePeopleChange}
             />
           </div>
@@ -68,7 +79,10 @@ function App() {
             </div>
 
             <div className='flex justify-center'>
-              <button className='bg-strong-cyan text-dark-cyan w-full p-2 rounded font-bold hover:bg-light-gray-cyan'>
+              <button
+                onClick={handleReset}
+                className='bg-strong-cyan text-dark-cyan w-full p-2 rounded font-bold hover:bg-light-gray-cyan'
+              >
                 RESET
               </button>
             </div>
