@@ -3,7 +3,7 @@ import React from 'react';
 export default function Input(props) {
   return (
     <label htmlFor={props.id} name={props.name}>
-      <span className='font-semibold text-dark-cyan text-sm'>
+      <span className='font-semibold text-dark-cyan text-xs sm:text-base'>
         {props.label}
       </span>
       <div className='relative'>

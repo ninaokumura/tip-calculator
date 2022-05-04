@@ -37,12 +37,12 @@ function App() {
   return (
     <div className='grid place-items-center min-h-screen bg-light-gray-cyan max-w-screen font-mono'>
       <div>
-        <h1 className='text-center py-12 text-xl font-semibold opacity-[0.7] tracking-[0.7rem] text-dark-cyan'>
+        <h1 className='text-center py-8 sm:py-12 sm:text-xl text-sm font-semibold opacity-[0.7] tracking-[0.7rem] text-dark-cyan'>
           <div>SPLI</div>
           <div>TTER</div>
         </h1>
-        <main className='h-[20rem] w-[40rem] bg-[#fff] rounded-xl p-6 grid grid-cols-2 gap-4'>
-          <div className='flex flex-col justify-between'>
+        <main className='sm:h-[20rem] sm:w-[40rem] bg-[#fff] rounded-xl p-6 sm:grid sm:grid-cols-2 gap-4'>
+          <div className='flex flex-col justify-between gap-6 sm:gap-2 pb-6'>
             <Input
               icon={<DollarIcon />}
               label='Bill'
@@ -50,7 +50,9 @@ function App() {
               onChange={handleBillChange}
               value={bill}
             />
-            <span>Select Tip %</span>
+            <span className='text-xs sm:text-base font-semibold opacity-[0.8] text-dark-cyan'>
+              Select Tip %
+            </span>
             <Options selected={tipPercentage} onClick={handleTipClick} />
             <Input
               icon={<PersonIcon />}
@@ -60,20 +62,20 @@ function App() {
               onChange={handlePeopleChange}
             />
           </div>
-          <div className='bg-dark-cyan rounded-lg text-white flex flex-col justify-between p-4'>
-            <div className='grid gap-8 grid-cols-2'>
+          <div className='bg-dark-cyan rounded-lg text-white flex flex-col justify-between p-4 gap-6'>
+            <div className='grid gap-8 grid-cols-2 text-xs sm:text-base'>
               <div>
                 Tip Amount
                 <span className='text-sm opacity-[0.5]'>/ person</span>
               </div>
-              <span className='text-3xl text-strong-cyan font-semibold text-right'>
+              <span className='sm:text-2xl text-xl text-strong-cyan font-semibold text-right'>
                 {formatAsCurrency(tipAmount)}
               </span>
 
               <div className='flex flex-col'>
                 Total <span className='opacity-[0.5]'>/ person</span>
               </div>
-              <span className='text-3xl text-strong-cyan font-semibold text-right'>
+              <span className='sm:text-2xl text-xl text-strong-cyan font-semibold text-right'>
                 {formatAsCurrency(totalPerPerson)}
               </span>
             </div>
