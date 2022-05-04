@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import React, { useState } from 'react';
 import CustomInput from './CustomInput';
 
-// const percentages = ['5%', '10%', '15%', '25%', '50%'];
 const percentages = [
   {
     name: '5%',
@@ -29,7 +28,7 @@ const percentages = [
 export default function Options(props) {
   const [isCustom, setIsCustom] = useState(false);
   return (
-    <div className='grid sm:grid-cols-3 grid-cols-2 gap-2'>
+    <div className='grid sm:grid-cols-3 grid-cols-2 gap-2 '>
       {percentages.map((percentage, idx) => (
         <button
           onClick={() => {
@@ -38,7 +37,7 @@ export default function Options(props) {
           }}
           key={idx}
           className={clsx(
-            'bg-dark-cyan rounded p-2 text-white w-24 hover:bg-light-gray-cyan hover:text-dark-cyan font-semibold',
+            'bg-dark-cyan rounded p-2 text-white  hover:bg-light-gray-cyan hover:text-dark-cyan font-semibold w-full',
             {
               'bg-strong-cyan !text-dark-cyan':
                 !isCustom && percentage.value === props.selected,
